@@ -10,7 +10,6 @@ export function Legend() {
           {RAG_COLOURS[rag].label}
         </span>
       ))}
-      <span className="legend-hint">Hover a card for its formula and thresholds</span>
     </div>
   );
 }

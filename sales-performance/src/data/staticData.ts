@@ -1,5 +1,5 @@
 /**
- * Static demo data for the CEO Quarterly Business Review.
+ * Static demo data for the Quarterly Business Review.
  *
  * Only base values at the lowest level are stored here: accounts (sales) and projects (delivery).
  * Every BU, Sub-BU and company figure is computed from these in src/model.

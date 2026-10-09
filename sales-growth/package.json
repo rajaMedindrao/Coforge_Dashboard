@@ -1,0 +1,15 @@
+{
+  "name": "ceo-qbr-sales-growth",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Quarterly Business Review with the Account Growth tab. Uses the dependencies installed at the repository root.",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit -p . && vite build",
+    "test": "vitest run",
+    "qa": "node tests/browser.qa.mjs",
+    "qa:all": "node tests/all-views.qa.mjs",
+    "preview": "vite preview --host 127.0.0.1"
+  }
+}

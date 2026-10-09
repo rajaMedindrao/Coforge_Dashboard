@@ -1,8 +1,13 @@
+import {fileURLToPath} from 'node:url';
 import {defineConfig} from 'vitest/config';
 
 export default defineConfig({
-  // Vitest resolves test imports through the base path, so it only applies to the app.
-  base: process.env.VITEST ? '/' : '/sales-performance/',
-  server: {port: 5180, open: '/sales-performance/?page=sales'},
+  base: '/',
+  server: {port: 5182, strictPort: true, open: '/sales-performance/?page=sales'},
+  build: {rollupOptions: {input: {
+    home: fileURLToPath(new URL('./index.html', import.meta.url)),
+    salesPerformance: fileURLToPath(new URL('./sales-performance/index.html', import.meta.url)),
+    salesGrowth: fileURLToPath(new URL('./sales-growth/index.html', import.meta.url)),
+  }}},
   test: {include: ['sales-performance/tests/**/*.test.ts']},
 });

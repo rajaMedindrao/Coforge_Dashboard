@@ -4,7 +4,7 @@ import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
-const base = process.env.QA_URL ?? 'http://127.0.0.1:5180/sales-performance';
+const base = process.env.QA_URL ?? 'http://127.0.0.1:5182/sales-performance';
 const output = process.env.QA_OUTPUT ?? '.qa/screenshots';
 fs.mkdirSync(output, {recursive: true});
 

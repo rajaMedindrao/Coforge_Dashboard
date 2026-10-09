@@ -71,7 +71,6 @@ export function App() {
       <header className="topbar">
         <div className="brand">
           <span className="logo">coforge</span>
-          <span className="product">CEO Quarterly Business Review</span>
         </div>
         <nav className="tabs" aria-label="Page">
           {(['sales', 'delivery'] as const).map(page => (
@@ -93,7 +92,7 @@ export function App() {
 
         <div className="title-row">
           <h1>{view.unit.name}</h1>
-          <span className="owner">{ownerLine(view)}</span>
+        {view.level !== 'company' && <span className="owner">{ownerLine(view)}</span>}
         </div>
 
         {route.page === 'sales' ? (

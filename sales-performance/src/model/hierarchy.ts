@@ -14,7 +14,7 @@ export interface Selection {
 export interface Unit {
   key: string;
   name: string;
-  /** e.g. "Arjun Mehta, BU Head" */
+  /** Owner's name, without a role suffix. */
   owner: string;
   selection: Selection;
   accounts: readonly Account[];
@@ -69,7 +69,7 @@ function subBuUnit(page: Page, bu: Bu, subBu: SubBu): Unit {
   return {
     key: subBu.id,
     name: subBu.name,
-    owner: page === 'sales' ? `${subBu.salesLead}, Sales Lead` : `${subBu.deliveryLead}, Delivery Lead`,
+    owner: page === 'sales' ? subBu.salesLead : subBu.deliveryLead,
     selection: {buId: bu.id, subBuId: subBu.id},
     accounts: subBu.accounts,
     projects: subBu.projects,
@@ -81,7 +81,7 @@ function buUnit(page: Page, bu: Bu): Unit {
   return {
     key: bu.id,
     name: bu.name,
-    owner: page === 'sales' ? `${bu.buHead}, Business Unit Head` : `${bu.deliveryHead}, Delivery Head`,
+    owner: page === 'sales' ? bu.buHead : bu.deliveryHead,
     selection: {buId: bu.id},
     accounts: accountsOf(bu),
     projects: projectsOf(bu),

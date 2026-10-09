@@ -1,0 +1,42 @@
+/* Account Growth shares the Sales components, typography, and colour tokens. */
+.growth .rag-dot.neutral { display: none; }
+.growth .variance.neutral { color: var(--muted); }
+.growth .rag-cell.neutral { background: var(--green-tint); }
+.growth .rag-cell.neutral strong { color: var(--green); }
+.growth .opportunity-group tr:has(.rag-cell:nth-child(5).neutral) .rag-cell { background: var(--page); }
+.growth .kpi-card h3 { overflow: visible; text-overflow: clip; }
+.growth .kpi-target { flex-wrap: wrap; white-space: normal; min-height: 16px; }
+.growth .kpi-note { overflow: visible; }
+.growth-toolbar .breadcrumb { flex-shrink: 0; }
+.growth-toolbar .breadcrumb select { max-width: 180px; }
+.growth-toolbar:has(select[aria-label="Opportunity"]) .breadcrumb select { max-width: 145px; }
+.growth-toolbar:has(select[aria-label="Opportunity"]) .legend-hint { display: none; }
+.growth-strip { display: grid; grid-template-columns: repeat(7, 1fr); margin-top: 24px; align-items: center; }
+.growth-strip small, .growth-strip strong { display: block; }
+.growth-strip small { color: var(--muted); font-size: 11.5px; }
+.growth-strip strong { margin-top: 3px; font-size: 16px; }
+.opportunity-group { margin-top: 16px; }
+.opportunity-group .comparison tr:has(.rag-cell:nth-child(5).neutral) td { color: var(--muted); font-style: italic; }
+.opportunity-group .comparison tr:has(.rag-cell:nth-child(5).neutral) strong { color: var(--muted); }
+.growth .stage { color: var(--navy); background: white; border-color: var(--navy); }
+.stage-dots { white-space: nowrap; }
+.stage-dots i { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--line); margin-left: 3px; }
+.stage-dots i.done { background: var(--navy); }
+.opportunity-page .trend-bars { display: none; }
+.opportunity-page .kpi-note { height: auto; }
+.opportunity-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 24px; }
+.detail-section { font-size: 13px; line-height: 1.4; }
+.detail-section h2 { font-size: 14px; margin: 16px 0 5px; }
+.detail-section h2:first-child { margin-top: 0; }
+.detail-section p { margin: 5px 0; }
+.detail-section dl { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.detail-section dt, .detail-section small { color: var(--muted); font-size: 11.5px; }
+.detail-section dd { margin: 0; }
+.detail-section ul, .detail-section ol { margin: 0; padding-left: 18px; }
+.detail-section li { margin: 5px 0; }
+.detail-section small { display: block; }
+.growth-title-opportunity { flex-wrap: wrap; align-items: center; }
+.growth-title-opportunity h1 { flex: 0 1 auto; }
+.growth-title-opportunity .owner { font-size: 12px; }
+
+.growth .table-heading > .hint { display: none; }
