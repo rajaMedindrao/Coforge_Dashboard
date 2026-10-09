@@ -12,12 +12,14 @@ const views = [
   ['sales-company', 'page=sales', 5, 4],
   ['sales-bu-banking', 'page=sales&bu=banking', 5, 2],
   ['sales-subbu-corporate-banking', 'page=sales&bu=banking&sub=corporate-banking', 5, 3],
-  ['sales-person-sterling', 'page=sales&bu=banking&sub=corporate-banking&person=sterling-commercial-bank', 7, 3],
-  ['sales-person-evergreen', 'page=sales&bu=insurance&sub=life-annuities&person=evergreen-life', 7, 3],
+  ['sales-person-sterling', 'page=sales&bu=banking&sub=corporate-banking&person=sterling-commercial-bank', 7, 5],
+  ['sales-person-evergreen', 'page=sales&bu=insurance&sub=life-annuities&person=evergreen-life', 7, 5],
+  ['sales-person-skybridge', 'page=sales&bu=travel&sub=airlines&person=skybridge-airways', 7, 5],
+  ['sales-person-harbor', 'page=sales&bu=banking&sub=retail-banking&person=harbor-savings', 7, 4],
   ['delivery-company', 'page=delivery', 4, 4],
   ['delivery-bu-travel', 'page=delivery&bu=travel', 4, 2],
   ['delivery-subbu-airlines', 'page=delivery&bu=travel&sub=airlines', 4, 4],
-  ['delivery-person-crew', 'page=delivery&bu=travel&sub=airlines&person=crew-scheduling-platform', 6, 3],
+  ['delivery-person-crew', 'page=delivery&bu=travel&sub=airlines&person=crew-scheduling-platform', 6, 4],
 ];
 
 const browser = await chromium.launch({headless: true});
@@ -38,6 +40,9 @@ try {
       charts: [...document.querySelectorAll('.kpi-card canvas')].filter(c => c.width > 0 && c.height > 0).length,
       rows: document.querySelectorAll('table tbody tr').length,
       emptyCells: [...document.querySelectorAll('td')].filter(td => td.innerText.trim() === '').length,
+      clickableRows: document.querySelectorAll('tbody tr[tabindex]').length,
+      pointerRows: [...document.querySelectorAll('tbody tr')].filter(tr => getComputedStyle(tr).cursor === 'pointer').length,
+      hints: document.querySelectorAll('.hint').length,
       text: document.body.innerText,
     }));
     assert.ok(state.scrollHeight <= 900, `${name}: page is ${state.scrollHeight}px tall`);
@@ -46,6 +51,9 @@ try {
     assert.equal(state.charts, cards, `${name}: every card draws its chart`);
     assert.equal(state.rows, rows, `${name}: table rows`);
     assert.equal(state.emptyCells, 0, `${name}: no empty table cells`);
+    if (name.includes('-person-')) {
+      assert.equal(state.clickableRows + state.pointerRows + state.hints, 0, `${name}: last level is not clickable`);
+    }
     assert.doesNotMatch(state.text, /—|NaN|Infinity|undefined|\bnull\b/, `${name}: no placeholder values`);
     await page.screenshot({path: `${output}/${name}.png`});
     console.log(`${name}: ${state.cards} cards, ${state.rows} rows, ${state.scrollHeight}px tall`);

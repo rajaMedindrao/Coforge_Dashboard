@@ -255,3 +255,59 @@ export const SALES_METRICS = [revenue, grossMargin, bookings, pipeline, winRate]
 export const CLIENT_PARTNER_METRICS = [...SALES_METRICS, accountGrowth, newPipeline] as const;
 export const DELIVERY_METRICS = [utilisation, projectMargin, csat, onTime] as const;
 export const DELIVERY_MANAGER_METRICS = [...DELIVERY_METRICS, escalations, attrition] as const;
+
+const RAG_ORDER: Rag[] = ['green', 'amber', 'red'];
+const STATUS_LABELS = ['On track', 'Slightly below', 'Needs action'];
+const SHORT_NAMES: Record<string, string> = {utilisation: 'Utilisation', projectMargin: 'Margin', csat: 'CSAT', onTime: 'On-time'};
+
+/** The delivery metric furthest behind: worst RAG first, then the largest shortfall against target. */
+export function weakestDeliveryMetric(f: DeliveryFigures) {
+  const scored = DELIVERY_METRICS.map(metric => ({
+    metric,
+    rag: metric.rag(f),
+    gap: (metric.value(f) - metric.target(f)) / metric.target(f),
+  }));
+  return scored.reduce((worst, s) =>
+    RAG_ORDER.indexOf(s.rag) > RAG_ORDER.indexOf(worst.rag) || (s.rag === worst.rag && s.gap < worst.gap) ? s : worst,
+  );
+}
+
+const projectRevenue: MetricDef<DeliveryFigures> = {
+  key: 'projectRevenue',
+  label: 'Revenue',
+  formula: 'Project revenue realised in the quarter, compared with the project revenue target.',
+  thresholds: ATTAINMENT_RULE,
+  value: f => f.revenue,
+  target: f => f.revenueTarget,
+  rag: f => ragOfAttainment(f.revenue, f.revenueTarget),
+  format: money,
+  targetText: f => `Target ${money(f.revenueTarget)}`,
+  varianceText: f => attainmentText(f.revenue, f.revenueTarget),
+  cardNote: f => `Target ${money(f.revenueTarget)}`,
+  cellNote: s => `Target ${money(current(s).revenueTarget)}`,
+};
+
+const projectGrossMargin: MetricDef<DeliveryFigures> = {...projectMargin, key: 'projectGrossMargin', label: 'Gross margin'};
+
+const deliveryStatus: MetricDef<DeliveryFigures> = {
+  key: 'deliveryStatus',
+  label: 'Delivery status',
+  formula: 'The worst RAG of utilisation, project margin, client satisfaction and on-time delivery.',
+  thresholds: 'Takes the colour of the weakest of the four delivery measures.',
+  value: f => RAG_ORDER.indexOf(weakestDeliveryMetric(f).rag),
+  target: () => 0,
+  rag: f => weakestDeliveryMetric(f).rag,
+  format: value => STATUS_LABELS[value],
+  targetText: () => 'Target on track',
+  varianceText: f => STATUS_LABELS[RAG_ORDER.indexOf(weakestDeliveryMetric(f).rag)],
+  cardNote: f => weakestNote(f),
+  cellNote: s => weakestNote(current(s)),
+};
+
+function weakestNote(f: DeliveryFigures): string {
+  const {metric} = weakestDeliveryMetric(f);
+  return `${SHORT_NAMES[metric.key]} ${metric.format(metric.value(f))}`;
+}
+
+/** Columns of the projects table on the Client Partner view. */
+export const ACCOUNT_PROJECT_METRICS = [projectRevenue, projectGrossMargin, deliveryStatus] as const;

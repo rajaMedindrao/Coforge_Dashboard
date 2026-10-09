@@ -66,6 +66,8 @@ export interface ProjectQuarter {
   billableFte: number;
   totalFte: number;
   revenue: number;
+  /** Share of the account's revenue target; project targets add up to the account target */
+  revenueTarget: number;
   cost: number;
   /** Planned project gross margin, % */
   marginPlan: number;
@@ -164,9 +166,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'digital-onboarding', name: 'Digital Onboarding', accountId: 'northbridge-bank', deliveryManager: 'Ravi Shankar',
             quarters: [
-              { billableFte: 45, totalFte: 54, revenue: 1880, cost: 1250, marginPlan: 32.0, csat: 4.4, milestonesDue: 10, milestonesMet: 9, openEscalations: 0, attritionPct: 8.9 },
-              { billableFte: 45, totalFte: 53, revenue: 1900, cost: 1260, marginPlan: 32.0, csat: 4.6, milestonesDue: 11, milestonesMet: 11, openEscalations: 0, attritionPct: 9.4 },
-              { billableFte: 46, totalFte: 55, revenue: 1930, cost: 1280, marginPlan: 32.0, csat: 4.5, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 9.2 },
+              { billableFte: 45, totalFte: 54, revenue: 1880, revenueTarget: 1840, cost: 1250, marginPlan: 32.0, csat: 4.4, milestonesDue: 10, milestonesMet: 9, openEscalations: 0, attritionPct: 8.9 },
+              { billableFte: 45, totalFte: 53, revenue: 1900, revenueTarget: 1890, cost: 1260, marginPlan: 32.0, csat: 4.6, milestonesDue: 11, milestonesMet: 11, openEscalations: 0, attritionPct: 9.4 },
+              { billableFte: 46, totalFte: 55, revenue: 1930, revenueTarget: 1890, cost: 1280, marginPlan: 32.0, csat: 4.5, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 9.2 },
             ],
             nextMilestones: [
               { name: 'Release go-live', due: '2026-10-16', status: 'On track' },
@@ -177,9 +179,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'core-banking-upgrade', name: 'Core Banking Upgrade', accountId: 'northbridge-bank', deliveryManager: 'Kelly Brown',
             quarters: [
-              { billableFte: 30, totalFte: 37, revenue: 1250, cost: 830, marginPlan: 32.0, csat: 4.3, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 10.8 },
-              { billableFte: 30, totalFte: 36, revenue: 1270, cost: 850, marginPlan: 32.0, csat: 4.5, milestonesDue: 13, milestonesMet: 13, openEscalations: 0, attritionPct: 11.3 },
-              { billableFte: 31, totalFte: 38, revenue: 1290, cost: 870, marginPlan: 32.0, csat: 4.4, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 11.1 },
+              { billableFte: 30, totalFte: 37, revenue: 1250, revenueTarget: 1230, cost: 830, marginPlan: 32.0, csat: 4.3, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 10.8 },
+              { billableFte: 30, totalFte: 36, revenue: 1270, revenueTarget: 1260, cost: 850, marginPlan: 32.0, csat: 4.5, milestonesDue: 13, milestonesMet: 13, openEscalations: 0, attritionPct: 11.3 },
+              { billableFte: 31, totalFte: 38, revenue: 1290, revenueTarget: 1260, cost: 870, marginPlan: 32.0, csat: 4.4, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 11.1 },
             ],
             nextMilestones: [
               { name: 'Data migration wave', due: '2026-10-09', status: 'On track' },
@@ -190,9 +192,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'mobile-app-rebuild', name: 'Mobile App Rebuild', accountId: 'harbor-savings', deliveryManager: 'Siddharth Rao',
             quarters: [
-              { billableFte: 52, totalFte: 63, revenue: 2190, cost: 1470, marginPlan: 32.0, csat: 4.2, milestonesDue: 11, milestonesMet: 11, openEscalations: 0, attritionPct: 10.2 },
-              { billableFte: 53, totalFte: 63, revenue: 2220, cost: 1490, marginPlan: 32.0, csat: 4.4, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 10.7 },
-              { billableFte: 54, totalFte: 65, revenue: 2250, cost: 1510, marginPlan: 32.0, csat: 4.5, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 10.5 },
+              { billableFte: 52, totalFte: 63, revenue: 2190, revenueTarget: 2190, cost: 1470, marginPlan: 32.0, csat: 4.2, milestonesDue: 11, milestonesMet: 11, openEscalations: 0, attritionPct: 10.2 },
+              { billableFte: 53, totalFte: 63, revenue: 2220, revenueTarget: 2240, cost: 1490, marginPlan: 32.0, csat: 4.4, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 10.7 },
+              { billableFte: 54, totalFte: 65, revenue: 2250, revenueTarget: 2240, cost: 1510, marginPlan: 32.0, csat: 4.5, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 10.5 },
             ],
             nextMilestones: [
               { name: 'Sprint demo to client', due: '2026-10-14', status: 'On track' },
@@ -203,9 +205,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'loan-origination', name: 'Loan Origination', accountId: 'crestline-credit-union', deliveryManager: 'Megan Clark',
             quarters: [
-              { billableFte: 37, totalFte: 44, revenue: 1560, cost: 1040, marginPlan: 32.0, csat: 4.4, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 11.3 },
-              { billableFte: 38, totalFte: 44, revenue: 1580, cost: 1060, marginPlan: 32.0, csat: 4.6, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 11.8 },
-              { billableFte: 38, totalFte: 45, revenue: 1610, cost: 1080, marginPlan: 32.0, csat: 4.5, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 11.6 },
+              { billableFte: 37, totalFte: 44, revenue: 1560, revenueTarget: 1570, cost: 1040, marginPlan: 32.0, csat: 4.4, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 11.3 },
+              { billableFte: 38, totalFte: 44, revenue: 1580, revenueTarget: 1610, cost: 1060, marginPlan: 32.0, csat: 4.6, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 11.8 },
+              { billableFte: 38, totalFte: 45, revenue: 1610, revenueTarget: 1610, cost: 1080, marginPlan: 32.0, csat: 4.5, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 11.6 },
             ],
             nextMilestones: [
               { name: 'Integration testing done', due: '2026-10-21', status: 'On track' },
@@ -262,9 +264,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'trade-finance-platform', name: 'Trade Finance Platform', accountId: 'sterling-commercial-bank', deliveryManager: 'Ajay Nambiar',
             quarters: [
-              { billableFte: 54, totalFte: 65, revenue: 2270, cost: 1510, marginPlan: 32.0, csat: 4.4, milestonesDue: 11, milestonesMet: 11, openEscalations: 0, attritionPct: 8.9 },
-              { billableFte: 55, totalFte: 65, revenue: 2290, cost: 1530, marginPlan: 32.0, csat: 4.2, milestonesDue: 12, milestonesMet: 11, openEscalations: 0, attritionPct: 9.4 },
-              { billableFte: 55, totalFte: 65, revenue: 2330, cost: 1560, marginPlan: 32.0, csat: 3.9, milestonesDue: 14, milestonesMet: 12, openEscalations: 1, attritionPct: 9.2 },
+              { billableFte: 54, totalFte: 65, revenue: 2270, revenueTarget: 2260, cost: 1510, marginPlan: 32.0, csat: 4.4, milestonesDue: 11, milestonesMet: 11, openEscalations: 0, attritionPct: 8.9 },
+              { billableFte: 55, totalFte: 65, revenue: 2290, revenueTarget: 2310, cost: 1530, marginPlan: 32.0, csat: 4.2, milestonesDue: 12, milestonesMet: 11, openEscalations: 0, attritionPct: 9.4 },
+              { billableFte: 55, totalFte: 65, revenue: 2330, revenueTarget: 2310, cost: 1560, marginPlan: 32.0, csat: 3.9, milestonesDue: 14, milestonesMet: 12, openEscalations: 1, attritionPct: 9.2 },
             ],
             nextMilestones: [
               { name: 'Release 4 go-live', due: '2026-10-14', status: 'At risk' },
@@ -275,9 +277,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'treasury-data-hub', name: 'Treasury Data Hub', accountId: 'sterling-commercial-bank', deliveryManager: 'Rachel Green',
             quarters: [
-              { billableFte: 36, totalFte: 44, revenue: 1510, cost: 1020, marginPlan: 32.0, csat: 4.3, milestonesDue: 12, milestonesMet: 12, openEscalations: 1, attritionPct: 10.8 },
-              { billableFte: 36, totalFte: 46, revenue: 1530, cost: 1030, marginPlan: 32.0, csat: 4.5, milestonesDue: 13, milestonesMet: 13, openEscalations: 1, attritionPct: 11.3 },
-              { billableFte: 37, totalFte: 48, revenue: 1560, cost: 1050, marginPlan: 32.0, csat: 4.4, milestonesDue: 12, milestonesMet: 12, openEscalations: 1, attritionPct: 11.1 },
+              { billableFte: 36, totalFte: 44, revenue: 1510, revenueTarget: 1500, cost: 1020, marginPlan: 32.0, csat: 4.3, milestonesDue: 12, milestonesMet: 12, openEscalations: 1, attritionPct: 10.8 },
+              { billableFte: 36, totalFte: 46, revenue: 1530, revenueTarget: 1540, cost: 1030, marginPlan: 32.0, csat: 4.5, milestonesDue: 13, milestonesMet: 13, openEscalations: 1, attritionPct: 11.3 },
+              { billableFte: 37, totalFte: 48, revenue: 1560, revenueTarget: 1540, cost: 1050, marginPlan: 32.0, csat: 4.4, milestonesDue: 12, milestonesMet: 12, openEscalations: 1, attritionPct: 11.1 },
             ],
             nextMilestones: [
               { name: 'Data migration wave', due: '2026-10-09', status: 'On track' },
@@ -288,9 +290,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'payments-gateway', name: 'Payments Gateway', accountId: 'atlas-trade-finance', deliveryManager: 'Vivek Sinha',
             quarters: [
-              { billableFte: 23, totalFte: 28, revenue: 960, cost: 650, marginPlan: 32.0, csat: 4.2, milestonesDue: 11, milestonesMet: 11, openEscalations: 0, attritionPct: 10.2 },
-              { billableFte: 23, totalFte: 27, revenue: 970, cost: 650, marginPlan: 32.0, csat: 4.4, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 10.7 },
-              { billableFte: 23, totalFte: 28, revenue: 980, cost: 660, marginPlan: 32.0, csat: 4.3, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 10.5 },
+              { billableFte: 23, totalFte: 28, revenue: 960, revenueTarget: 970, cost: 650, marginPlan: 32.0, csat: 4.2, milestonesDue: 11, milestonesMet: 11, openEscalations: 0, attritionPct: 10.2 },
+              { billableFte: 23, totalFte: 27, revenue: 970, revenueTarget: 990, cost: 650, marginPlan: 32.0, csat: 4.4, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 10.7 },
+              { billableFte: 23, totalFte: 28, revenue: 980, revenueTarget: 990, cost: 660, marginPlan: 32.0, csat: 4.3, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 10.5 },
             ],
             nextMilestones: [
               { name: 'Sprint demo to client', due: '2026-10-14', status: 'On track' },
@@ -301,9 +303,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'cash-management-portal', name: 'Cash Management Portal', accountId: 'meridian-treasury', deliveryManager: 'Alicia Torres',
             quarters: [
-              { billableFte: 15, totalFte: 18, revenue: 630, cost: 420, marginPlan: 32.0, csat: 4.4, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 13.7 },
-              { billableFte: 15, totalFte: 17, revenue: 640, cost: 430, marginPlan: 32.0, csat: 4.6, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 14.2 },
-              { billableFte: 15, totalFte: 18, revenue: 650, cost: 440, marginPlan: 32.0, csat: 4.5, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 14.0 },
+              { billableFte: 15, totalFte: 18, revenue: 630, revenueTarget: 640, cost: 420, marginPlan: 32.0, csat: 4.4, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 13.7 },
+              { billableFte: 15, totalFte: 17, revenue: 640, revenueTarget: 660, cost: 430, marginPlan: 32.0, csat: 4.6, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 14.2 },
+              { billableFte: 15, totalFte: 18, revenue: 650, revenueTarget: 660, cost: 440, marginPlan: 32.0, csat: 4.5, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 14.0 },
             ],
             nextMilestones: [
               { name: 'Integration testing done', due: '2026-10-21', status: 'On track' },
@@ -365,9 +367,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'policy-admin-modernisation', name: 'Policy Admin Modernisation', accountId: 'evergreen-life', deliveryManager: 'Gaurav Mishra',
             quarters: [
-              { billableFte: 29, totalFte: 35, revenue: 1220, cost: 760, marginPlan: 36.0, csat: 4.6, milestonesDue: 10, milestonesMet: 9, openEscalations: 0, attritionPct: 8.9 },
-              { billableFte: 30, totalFte: 35, revenue: 1240, cost: 770, marginPlan: 36.0, csat: 4.7, milestonesDue: 11, milestonesMet: 11, openEscalations: 0, attritionPct: 9.4 },
-              { billableFte: 30, totalFte: 35, revenue: 1260, cost: 780, marginPlan: 36.0, csat: 4.6, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 9.2 },
+              { billableFte: 29, totalFte: 35, revenue: 1220, revenueTarget: 1200, cost: 760, marginPlan: 36.0, csat: 4.6, milestonesDue: 10, milestonesMet: 9, openEscalations: 0, attritionPct: 8.9 },
+              { billableFte: 30, totalFte: 35, revenue: 1240, revenueTarget: 1230, cost: 770, marginPlan: 36.0, csat: 4.7, milestonesDue: 11, milestonesMet: 11, openEscalations: 0, attritionPct: 9.4 },
+              { billableFte: 30, totalFte: 35, revenue: 1260, revenueTarget: 1230, cost: 780, marginPlan: 36.0, csat: 4.6, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 9.2 },
             ],
             nextMilestones: [
               { name: 'Release go-live', due: '2026-10-16', status: 'On track' },
@@ -378,9 +380,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'annuity-claims-automation', name: 'Annuity Claims Automation', accountId: 'evergreen-life', deliveryManager: 'Nina Patel',
             quarters: [
-              { billableFte: 19, totalFte: 23, revenue: 810, cost: 510, marginPlan: 36.0, csat: 4.5, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 10.8 },
-              { billableFte: 20, totalFte: 24, revenue: 820, cost: 520, marginPlan: 36.0, csat: 4.6, milestonesDue: 13, milestonesMet: 13, openEscalations: 0, attritionPct: 11.3 },
-              { billableFte: 20, totalFte: 24, revenue: 840, cost: 530, marginPlan: 36.0, csat: 4.5, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 11.1 },
+              { billableFte: 19, totalFte: 23, revenue: 810, revenueTarget: 800, cost: 510, marginPlan: 36.0, csat: 4.5, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 10.8 },
+              { billableFte: 20, totalFte: 24, revenue: 820, revenueTarget: 820, cost: 520, marginPlan: 36.0, csat: 4.6, milestonesDue: 13, milestonesMet: 13, openEscalations: 0, attritionPct: 11.3 },
+              { billableFte: 20, totalFte: 24, revenue: 840, revenueTarget: 820, cost: 530, marginPlan: 36.0, csat: 4.5, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 11.1 },
             ],
             nextMilestones: [
               { name: 'Data migration wave', due: '2026-10-09', status: 'On track' },
@@ -391,9 +393,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'agent-portal', name: 'Agent Portal', accountId: 'summit-annuity', deliveryManager: 'Harish Iyer',
             quarters: [
-              { billableFte: 34, totalFte: 40, revenue: 1420, cost: 890, marginPlan: 36.0, csat: 4.4, milestonesDue: 11, milestonesMet: 11, openEscalations: 0, attritionPct: 10.2 },
-              { billableFte: 34, totalFte: 41, revenue: 1440, cost: 900, marginPlan: 36.0, csat: 4.5, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 10.7 },
-              { billableFte: 35, totalFte: 44, revenue: 1470, cost: 920, marginPlan: 36.0, csat: 4.4, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 10.5 },
+              { billableFte: 34, totalFte: 40, revenue: 1420, revenueTarget: 1420, cost: 890, marginPlan: 36.0, csat: 4.4, milestonesDue: 11, milestonesMet: 11, openEscalations: 0, attritionPct: 10.2 },
+              { billableFte: 34, totalFte: 41, revenue: 1440, revenueTarget: 1460, cost: 900, marginPlan: 36.0, csat: 4.5, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 10.7 },
+              { billableFte: 35, totalFte: 44, revenue: 1470, revenueTarget: 1460, cost: 920, marginPlan: 36.0, csat: 4.4, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 10.5 },
             ],
             nextMilestones: [
               { name: 'Sprint demo to client', due: '2026-10-14', status: 'On track' },
@@ -404,9 +406,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'actuarial-data-platform', name: 'Actuarial Data Platform', accountId: 'beacon-mutual', deliveryManager: 'Jennifer Wu',
             quarters: [
-              { billableFte: 24, totalFte: 28, revenue: 1020, cost: 640, marginPlan: 36.0, csat: 4.6, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 11.3 },
-              { billableFte: 24, totalFte: 28, revenue: 1020, cost: 640, marginPlan: 36.0, csat: 4.7, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 11.8 },
-              { billableFte: 25, totalFte: 29, revenue: 1050, cost: 660, marginPlan: 36.0, csat: 4.6, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 11.6 },
+              { billableFte: 24, totalFte: 28, revenue: 1020, revenueTarget: 1030, cost: 640, marginPlan: 36.0, csat: 4.6, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 11.3 },
+              { billableFte: 24, totalFte: 28, revenue: 1020, revenueTarget: 1040, cost: 640, marginPlan: 36.0, csat: 4.7, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 11.8 },
+              { billableFte: 25, totalFte: 29, revenue: 1050, revenueTarget: 1040, cost: 660, marginPlan: 36.0, csat: 4.6, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 11.6 },
             ],
             nextMilestones: [
               { name: 'Integration testing done', due: '2026-10-21', status: 'On track' },
@@ -463,9 +465,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'claims-platform', name: 'Claims Platform', accountId: 'shield-property-insurance', deliveryManager: 'Prakash Menon',
             quarters: [
-              { billableFte: 29, totalFte: 35, revenue: 1210, cost: 750, marginPlan: 36.0, csat: 4.6, milestonesDue: 10, milestonesMet: 9, openEscalations: 0, attritionPct: 8.9 },
-              { billableFte: 29, totalFte: 34, revenue: 1220, cost: 760, marginPlan: 36.0, csat: 4.7, milestonesDue: 11, milestonesMet: 11, openEscalations: 0, attritionPct: 9.4 },
-              { billableFte: 30, totalFte: 35, revenue: 1250, cost: 770, marginPlan: 36.0, csat: 4.6, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 9.2 },
+              { billableFte: 29, totalFte: 35, revenue: 1210, revenueTarget: 1200, cost: 750, marginPlan: 36.0, csat: 4.6, milestonesDue: 10, milestonesMet: 9, openEscalations: 0, attritionPct: 8.9 },
+              { billableFte: 29, totalFte: 34, revenue: 1220, revenueTarget: 1230, cost: 760, marginPlan: 36.0, csat: 4.7, milestonesDue: 11, milestonesMet: 11, openEscalations: 0, attritionPct: 9.4 },
+              { billableFte: 30, totalFte: 35, revenue: 1250, revenueTarget: 1230, cost: 770, marginPlan: 36.0, csat: 4.6, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 9.2 },
             ],
             nextMilestones: [
               { name: 'Release go-live', due: '2026-10-16', status: 'On track' },
@@ -476,9 +478,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'underwriting-workbench', name: 'Underwriting Workbench', accountId: 'shield-property-insurance', deliveryManager: 'Amanda Ross',
             quarters: [
-              { billableFte: 19, totalFte: 23, revenue: 800, cost: 500, marginPlan: 36.0, csat: 4.5, milestonesDue: 12, milestonesMet: 12, openEscalations: 1, attritionPct: 10.8 },
-              { billableFte: 20, totalFte: 24, revenue: 820, cost: 510, marginPlan: 36.0, csat: 4.6, milestonesDue: 13, milestonesMet: 13, openEscalations: 1, attritionPct: 11.3 },
-              { billableFte: 20, totalFte: 24, revenue: 830, cost: 520, marginPlan: 36.0, csat: 4.5, milestonesDue: 12, milestonesMet: 12, openEscalations: 1, attritionPct: 11.1 },
+              { billableFte: 19, totalFte: 23, revenue: 800, revenueTarget: 800, cost: 500, marginPlan: 36.0, csat: 4.5, milestonesDue: 12, milestonesMet: 12, openEscalations: 1, attritionPct: 10.8 },
+              { billableFte: 20, totalFte: 24, revenue: 820, revenueTarget: 820, cost: 510, marginPlan: 36.0, csat: 4.6, milestonesDue: 13, milestonesMet: 13, openEscalations: 1, attritionPct: 11.3 },
+              { billableFte: 20, totalFte: 24, revenue: 830, revenueTarget: 820, cost: 520, marginPlan: 36.0, csat: 4.5, milestonesDue: 12, milestonesMet: 12, openEscalations: 1, attritionPct: 11.1 },
             ],
             nextMilestones: [
               { name: 'Data migration wave', due: '2026-10-09', status: 'On track' },
@@ -489,9 +491,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'billing-migration', name: 'Billing Migration', accountId: 'granite-casualty', deliveryManager: 'Kunal Shah',
             quarters: [
-              { billableFte: 34, totalFte: 41, revenue: 1410, cost: 880, marginPlan: 36.0, csat: 4.4, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 12.4 },
-              { billableFte: 34, totalFte: 40, revenue: 1420, cost: 890, marginPlan: 36.0, csat: 4.5, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 13.6 },
-              { billableFte: 35, totalFte: 41, revenue: 1460, cost: 910, marginPlan: 36.0, csat: 4.4, milestonesDue: 12, milestonesMet: 11, openEscalations: 0, attritionPct: 14.6 },
+              { billableFte: 34, totalFte: 41, revenue: 1410, revenueTarget: 1420, cost: 880, marginPlan: 36.0, csat: 4.4, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 12.4 },
+              { billableFte: 34, totalFte: 40, revenue: 1420, revenueTarget: 1460, cost: 890, marginPlan: 36.0, csat: 4.5, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 13.6 },
+              { billableFte: 35, totalFte: 41, revenue: 1460, revenueTarget: 1460, cost: 910, marginPlan: 36.0, csat: 4.4, milestonesDue: 12, milestonesMet: 11, openEscalations: 0, attritionPct: 14.6 },
             ],
             nextMilestones: [
               { name: 'Sprint demo to client', due: '2026-10-14', status: 'On track' },
@@ -502,9 +504,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'telematics-analytics', name: 'Telematics Analytics', accountId: 'harborline-auto', deliveryManager: 'Brian Foster',
             quarters: [
-              { billableFte: 24, totalFte: 28, revenue: 1010, cost: 630, marginPlan: 36.0, csat: 4.6, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 13.7 },
-              { billableFte: 24, totalFte: 28, revenue: 1020, cost: 640, marginPlan: 36.0, csat: 4.7, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 14.2 },
-              { billableFte: 25, totalFte: 29, revenue: 1040, cost: 650, marginPlan: 36.0, csat: 4.6, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 14.0 },
+              { billableFte: 24, totalFte: 28, revenue: 1010, revenueTarget: 1030, cost: 630, marginPlan: 36.0, csat: 4.6, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 13.7 },
+              { billableFte: 24, totalFte: 28, revenue: 1020, revenueTarget: 1040, cost: 640, marginPlan: 36.0, csat: 4.7, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 14.2 },
+              { billableFte: 25, totalFte: 29, revenue: 1040, revenueTarget: 1040, cost: 650, marginPlan: 36.0, csat: 4.6, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 14.0 },
             ],
             nextMilestones: [
               { name: 'Integration testing done', due: '2026-10-21', status: 'On track' },
@@ -566,9 +568,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'crew-scheduling-platform', name: 'Crew Scheduling Platform', accountId: 'skybridge-airways', deliveryManager: 'Sandeep Yadav',
             quarters: [
-              { billableFte: 29, totalFte: 37, revenue: 1200, cost: 910, marginPlan: 31.0, csat: 4.0, milestonesDue: 10, milestonesMet: 9, openEscalations: 1, attritionPct: 14.2 },
-              { billableFte: 29, totalFte: 38, revenue: 1230, cost: 1010, marginPlan: 31.0, csat: 3.7, milestonesDue: 11, milestonesMet: 8, openEscalations: 2, attritionPct: 16.8 },
-              { billableFte: 30, totalFte: 41, revenue: 1270, cost: 1090, marginPlan: 31.0, csat: 3.4, milestonesDue: 11, milestonesMet: 7, openEscalations: 3, attritionPct: 19.4 },
+              { billableFte: 29, totalFte: 37, revenue: 1200, revenueTarget: 1180, cost: 910, marginPlan: 31.0, csat: 4.0, milestonesDue: 10, milestonesMet: 9, openEscalations: 1, attritionPct: 14.2 },
+              { billableFte: 29, totalFte: 38, revenue: 1230, revenueTarget: 1190, cost: 1010, marginPlan: 31.0, csat: 3.7, milestonesDue: 11, milestonesMet: 8, openEscalations: 2, attritionPct: 16.8 },
+              { billableFte: 30, totalFte: 41, revenue: 1270, revenueTarget: 1190, cost: 1090, marginPlan: 31.0, csat: 3.4, milestonesDue: 11, milestonesMet: 7, openEscalations: 3, attritionPct: 19.4 },
             ],
             nextMilestones: [
               { name: 'Crew roster release 2', due: '2026-10-09', status: 'Late' },
@@ -579,9 +581,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'loyalty-app-support', name: 'Loyalty App Support', accountId: 'skybridge-airways', deliveryManager: 'Lisa Park',
             quarters: [
-              { billableFte: 19, totalFte: 23, revenue: 800, cost: 530, marginPlan: 31.0, csat: 4.4, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 10.8 },
-              { billableFte: 20, totalFte: 24, revenue: 820, cost: 540, marginPlan: 31.0, csat: 4.3, milestonesDue: 13, milestonesMet: 13, openEscalations: 0, attritionPct: 11.3 },
-              { billableFte: 20, totalFte: 25, revenue: 840, cost: 580, marginPlan: 31.0, csat: 4.2, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 11.1 },
+              { billableFte: 19, totalFte: 23, revenue: 800, revenueTarget: 780, cost: 530, marginPlan: 31.0, csat: 4.4, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 10.8 },
+              { billableFte: 20, totalFte: 24, revenue: 820, revenueTarget: 790, cost: 540, marginPlan: 31.0, csat: 4.3, milestonesDue: 13, milestonesMet: 13, openEscalations: 0, attritionPct: 11.3 },
+              { billableFte: 20, totalFte: 25, revenue: 840, revenueTarget: 790, cost: 580, marginPlan: 31.0, csat: 4.2, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 11.1 },
             ],
             nextMilestones: [
               { name: 'Data migration wave', due: '2026-10-09', status: 'On track' },
@@ -592,9 +594,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'revenue-management', name: 'Revenue Management', accountId: 'aurora-air', deliveryManager: 'Arvind Kumar',
             quarters: [
-              { billableFte: 33, totalFte: 40, revenue: 1400, cost: 960, marginPlan: 31.0, csat: 4.3, milestonesDue: 11, milestonesMet: 11, openEscalations: 0, attritionPct: 10.2 },
-              { billableFte: 34, totalFte: 41, revenue: 1430, cost: 980, marginPlan: 31.0, csat: 4.2, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 10.7 },
-              { billableFte: 35, totalFte: 43, revenue: 1480, cost: 1010, marginPlan: 31.0, csat: 4.1, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 10.5 },
+              { billableFte: 33, totalFte: 40, revenue: 1400, revenueTarget: 1390, cost: 960, marginPlan: 31.0, csat: 4.3, milestonesDue: 11, milestonesMet: 11, openEscalations: 0, attritionPct: 10.2 },
+              { billableFte: 34, totalFte: 41, revenue: 1430, revenueTarget: 1410, cost: 980, marginPlan: 31.0, csat: 4.2, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 10.7 },
+              { billableFte: 35, totalFte: 43, revenue: 1480, revenueTarget: 1410, cost: 1010, marginPlan: 31.0, csat: 4.1, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 10.5 },
             ],
             nextMilestones: [
               { name: 'Sprint demo to client', due: '2026-10-14', status: 'On track' },
@@ -605,9 +607,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'airport-ops-dashboard', name: 'Airport Ops Dashboard', accountId: 'pacific-jetlines', deliveryManager: 'Kevin Hughes',
             quarters: [
-              { billableFte: 24, totalFte: 29, revenue: 990, cost: 680, marginPlan: 31.0, csat: 4.5, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 11.3 },
-              { billableFte: 24, totalFte: 28, revenue: 1020, cost: 700, marginPlan: 31.0, csat: 4.4, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 11.8 },
-              { billableFte: 25, totalFte: 30, revenue: 1050, cost: 720, marginPlan: 31.0, csat: 4.3, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 11.6 },
+              { billableFte: 24, totalFte: 29, revenue: 990, revenueTarget: 1000, cost: 680, marginPlan: 31.0, csat: 4.5, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 11.3 },
+              { billableFte: 24, totalFte: 28, revenue: 1020, revenueTarget: 1010, cost: 700, marginPlan: 31.0, csat: 4.4, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 11.8 },
+              { billableFte: 25, totalFte: 30, revenue: 1050, revenueTarget: 1010, cost: 720, marginPlan: 31.0, csat: 4.3, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 11.6 },
             ],
             nextMilestones: [
               { name: 'Integration testing done', due: '2026-10-21', status: 'On track' },
@@ -664,9 +666,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'booking-engine', name: 'Booking Engine', accountId: 'grand-vista-hotels', deliveryManager: 'Shreya Ghosh',
             quarters: [
-              { billableFte: 23, totalFte: 28, revenue: 970, cost: 660, marginPlan: 31.0, csat: 4.4, milestonesDue: 11, milestonesMet: 11, openEscalations: 0, attritionPct: 8.9 },
-              { billableFte: 24, totalFte: 29, revenue: 1000, cost: 680, marginPlan: 31.0, csat: 4.2, milestonesDue: 12, milestonesMet: 11, openEscalations: 0, attritionPct: 9.4 },
-              { billableFte: 25, totalFte: 30, revenue: 1030, cost: 700, marginPlan: 31.0, csat: 4.0, milestonesDue: 14, milestonesMet: 12, openEscalations: 0, attritionPct: 9.2 },
+              { billableFte: 23, totalFte: 28, revenue: 970, revenueTarget: 960, cost: 660, marginPlan: 31.0, csat: 4.4, milestonesDue: 11, milestonesMet: 11, openEscalations: 0, attritionPct: 8.9 },
+              { billableFte: 24, totalFte: 29, revenue: 1000, revenueTarget: 970, cost: 680, marginPlan: 31.0, csat: 4.2, milestonesDue: 12, milestonesMet: 11, openEscalations: 0, attritionPct: 9.4 },
+              { billableFte: 25, totalFte: 30, revenue: 1030, revenueTarget: 970, cost: 700, marginPlan: 31.0, csat: 4.0, milestonesDue: 14, milestonesMet: 12, openEscalations: 0, attritionPct: 9.2 },
             ],
             nextMilestones: [
               { name: 'Release go-live', due: '2026-10-16', status: 'On track' },
@@ -677,9 +679,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'guest-data-platform', name: 'Guest Data Platform', accountId: 'grand-vista-hotels', deliveryManager: 'Paul Bennett',
             quarters: [
-              { billableFte: 15, totalFte: 19, revenue: 650, cost: 440, marginPlan: 31.0, csat: 4.4, milestonesDue: 9, milestonesMet: 8, openEscalations: 0, attritionPct: 10.8 },
-              { billableFte: 16, totalFte: 20, revenue: 660, cost: 450, marginPlan: 31.0, csat: 4.3, milestonesDue: 10, milestonesMet: 9, openEscalations: 1, attritionPct: 11.3 },
-              { billableFte: 16, totalFte: 20, revenue: 680, cost: 460, marginPlan: 31.0, csat: 4.2, milestonesDue: 8, milestonesMet: 7, openEscalations: 1, attritionPct: 11.1 },
+              { billableFte: 15, totalFte: 19, revenue: 650, revenueTarget: 640, cost: 440, marginPlan: 31.0, csat: 4.4, milestonesDue: 9, milestonesMet: 8, openEscalations: 0, attritionPct: 10.8 },
+              { billableFte: 16, totalFte: 20, revenue: 660, revenueTarget: 650, cost: 450, marginPlan: 31.0, csat: 4.3, milestonesDue: 10, milestonesMet: 9, openEscalations: 1, attritionPct: 11.3 },
+              { billableFte: 16, totalFte: 20, revenue: 680, revenueTarget: 650, cost: 460, marginPlan: 31.0, csat: 4.2, milestonesDue: 8, milestonesMet: 7, openEscalations: 1, attritionPct: 11.1 },
             ],
             nextMilestones: [
               { name: 'Data migration wave', due: '2026-10-09', status: 'On track' },
@@ -690,9 +692,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'property-management-cloud', name: 'Property Management Cloud', accountId: 'coastal-resorts', deliveryManager: 'Naveen Reddy',
             quarters: [
-              { billableFte: 27, totalFte: 33, revenue: 1130, cost: 770, marginPlan: 31.0, csat: 4.3, milestonesDue: 11, milestonesMet: 11, openEscalations: 0, attritionPct: 10.2 },
-              { billableFte: 28, totalFte: 36, revenue: 1160, cost: 790, marginPlan: 31.0, csat: 4.2, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 10.7 },
-              { billableFte: 29, totalFte: 38, revenue: 1200, cost: 820, marginPlan: 31.0, csat: 4.1, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 10.5 },
+              { billableFte: 27, totalFte: 33, revenue: 1130, revenueTarget: 1140, cost: 770, marginPlan: 31.0, csat: 4.3, milestonesDue: 11, milestonesMet: 11, openEscalations: 0, attritionPct: 10.2 },
+              { billableFte: 28, totalFte: 36, revenue: 1160, revenueTarget: 1150, cost: 790, marginPlan: 31.0, csat: 4.2, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 10.7 },
+              { billableFte: 29, totalFte: 38, revenue: 1200, revenueTarget: 1150, cost: 820, marginPlan: 31.0, csat: 4.1, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 10.5 },
             ],
             nextMilestones: [
               { name: 'Sprint demo to client', due: '2026-10-14', status: 'On track' },
@@ -703,9 +705,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'loyalty-programme', name: 'Loyalty Programme', accountId: 'urbanstay-group', deliveryManager: 'Monica Diaz',
             quarters: [
-              { billableFte: 19, totalFte: 23, revenue: 810, cost: 550, marginPlan: 31.0, csat: 4.5, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 13.7 },
-              { billableFte: 20, totalFte: 24, revenue: 830, cost: 570, marginPlan: 31.0, csat: 4.4, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 14.2 },
-              { billableFte: 20, totalFte: 24, revenue: 850, cost: 580, marginPlan: 31.0, csat: 4.3, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 14.0 },
+              { billableFte: 19, totalFte: 23, revenue: 810, revenueTarget: 810, cost: 550, marginPlan: 31.0, csat: 4.5, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 13.7 },
+              { billableFte: 20, totalFte: 24, revenue: 830, revenueTarget: 830, cost: 570, marginPlan: 31.0, csat: 4.4, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 14.2 },
+              { billableFte: 20, totalFte: 24, revenue: 850, revenueTarget: 830, cost: 580, marginPlan: 31.0, csat: 4.3, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 14.0 },
             ],
             nextMilestones: [
               { name: 'Integration testing done', due: '2026-10-21', status: 'On track' },
@@ -767,9 +769,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'claims-adjudication', name: 'Claims Adjudication', accountId: 'blueriver-health-plan', deliveryManager: 'Rajesh Pillai',
             quarters: [
-              { billableFte: 18, totalFte: 22, revenue: 740, cost: 490, marginPlan: 33.0, csat: 4.5, milestonesDue: 10, milestonesMet: 9, openEscalations: 0, attritionPct: 8.9 },
-              { billableFte: 19, totalFte: 24, revenue: 790, cost: 520, marginPlan: 33.0, csat: 4.6, milestonesDue: 11, milestonesMet: 11, openEscalations: 0, attritionPct: 9.4 },
-              { billableFte: 20, totalFte: 26, revenue: 850, cost: 560, marginPlan: 33.0, csat: 4.4, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 9.2 },
+              { billableFte: 18, totalFte: 22, revenue: 740, revenueTarget: 740, cost: 490, marginPlan: 33.0, csat: 4.5, milestonesDue: 10, milestonesMet: 9, openEscalations: 0, attritionPct: 8.9 },
+              { billableFte: 19, totalFte: 24, revenue: 790, revenueTarget: 800, cost: 520, marginPlan: 33.0, csat: 4.6, milestonesDue: 11, milestonesMet: 11, openEscalations: 0, attritionPct: 9.4 },
+              { billableFte: 20, totalFte: 26, revenue: 850, revenueTarget: 800, cost: 560, marginPlan: 33.0, csat: 4.4, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 9.2 },
             ],
             nextMilestones: [
               { name: 'Release go-live', due: '2026-10-16', status: 'On track' },
@@ -780,9 +782,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'member-portal', name: 'Member Portal', accountId: 'blueriver-health-plan', deliveryManager: 'Hannah Scott',
             quarters: [
-              { billableFte: 12, totalFte: 15, revenue: 490, cost: 320, marginPlan: 33.0, csat: 4.4, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 10.8 },
-              { billableFte: 12, totalFte: 16, revenue: 520, cost: 340, marginPlan: 33.0, csat: 4.5, milestonesDue: 13, milestonesMet: 13, openEscalations: 0, attritionPct: 11.3 },
-              { billableFte: 13, totalFte: 17, revenue: 560, cost: 370, marginPlan: 33.0, csat: 4.3, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 11.1 },
+              { billableFte: 12, totalFte: 15, revenue: 490, revenueTarget: 500, cost: 320, marginPlan: 33.0, csat: 4.4, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 10.8 },
+              { billableFte: 12, totalFte: 16, revenue: 520, revenueTarget: 540, cost: 340, marginPlan: 33.0, csat: 4.5, milestonesDue: 13, milestonesMet: 13, openEscalations: 0, attritionPct: 11.3 },
+              { billableFte: 13, totalFte: 17, revenue: 560, revenueTarget: 540, cost: 370, marginPlan: 33.0, csat: 4.3, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 11.1 },
             ],
             nextMilestones: [
               { name: 'Data migration wave', due: '2026-10-09', status: 'On track' },
@@ -793,9 +795,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'provider-network-data', name: 'Provider Network Data', accountId: 'unity-health-insurance', deliveryManager: 'Mohit Arora',
             quarters: [
-              { billableFte: 20, totalFte: 24, revenue: 860, cost: 570, marginPlan: 33.0, csat: 4.3, milestonesDue: 11, milestonesMet: 11, openEscalations: 0, attritionPct: 10.2 },
-              { billableFte: 22, totalFte: 28, revenue: 910, cost: 600, marginPlan: 33.0, csat: 4.4, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 10.7 },
-              { billableFte: 23, totalFte: 29, revenue: 980, cost: 650, marginPlan: 33.0, csat: 4.2, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 10.5 },
+              { billableFte: 20, totalFte: 24, revenue: 860, revenueTarget: 880, cost: 570, marginPlan: 33.0, csat: 4.3, milestonesDue: 11, milestonesMet: 11, openEscalations: 0, attritionPct: 10.2 },
+              { billableFte: 22, totalFte: 28, revenue: 910, revenueTarget: 950, cost: 600, marginPlan: 33.0, csat: 4.4, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 10.7 },
+              { billableFte: 23, totalFte: 29, revenue: 980, revenueTarget: 950, cost: 650, marginPlan: 33.0, csat: 4.2, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 10.5 },
             ],
             nextMilestones: [
               { name: 'Sprint demo to client', due: '2026-10-14', status: 'On track' },
@@ -806,9 +808,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'enrolment-automation', name: 'Enrolment Automation', accountId: 'clearpath-benefits', deliveryManager: 'Stephanie Young',
             quarters: [
-              { billableFte: 15, totalFte: 18, revenue: 610, cost: 400, marginPlan: 33.0, csat: 4.5, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 11.3 },
-              { billableFte: 15, totalFte: 18, revenue: 650, cost: 430, marginPlan: 33.0, csat: 4.6, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 11.8 },
-              { billableFte: 17, totalFte: 21, revenue: 700, cost: 460, marginPlan: 33.0, csat: 4.4, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 11.6 },
+              { billableFte: 15, totalFte: 18, revenue: 610, revenueTarget: 630, cost: 400, marginPlan: 33.0, csat: 4.5, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 11.3 },
+              { billableFte: 15, totalFte: 18, revenue: 650, revenueTarget: 680, cost: 430, marginPlan: 33.0, csat: 4.6, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 11.8 },
+              { billableFte: 17, totalFte: 21, revenue: 700, revenueTarget: 680, cost: 460, marginPlan: 33.0, csat: 4.4, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 11.6 },
             ],
             nextMilestones: [
               { name: 'Integration testing done', due: '2026-10-21', status: 'On track' },
@@ -865,9 +867,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'ehr-integration', name: 'EHR Integration', accountId: 'st-aria-medical-center', deliveryManager: 'Vinod Krishnan',
             quarters: [
-              { billableFte: 14, totalFte: 18, revenue: 600, cost: 390, marginPlan: 33.0, csat: 4.4, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 8.9 },
-              { billableFte: 15, totalFte: 19, revenue: 640, cost: 420, marginPlan: 33.0, csat: 4.3, milestonesDue: 12, milestonesMet: 11, openEscalations: 0, attritionPct: 9.4 },
-              { billableFte: 16, totalFte: 21, revenue: 680, cost: 450, marginPlan: 33.0, csat: 4.1, milestonesDue: 14, milestonesMet: 12, openEscalations: 0, attritionPct: 9.2 },
+              { billableFte: 14, totalFte: 18, revenue: 600, revenueTarget: 610, cost: 390, marginPlan: 33.0, csat: 4.4, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 8.9 },
+              { billableFte: 15, totalFte: 19, revenue: 640, revenueTarget: 650, cost: 420, marginPlan: 33.0, csat: 4.3, milestonesDue: 12, milestonesMet: 11, openEscalations: 0, attritionPct: 9.4 },
+              { billableFte: 16, totalFte: 21, revenue: 680, revenueTarget: 650, cost: 450, marginPlan: 33.0, csat: 4.1, milestonesDue: 14, milestonesMet: 12, openEscalations: 0, attritionPct: 9.2 },
             ],
             nextMilestones: [
               { name: 'Release go-live', due: '2026-10-16', status: 'On track' },
@@ -878,9 +880,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'revenue-cycle-analytics', name: 'Revenue Cycle Analytics', accountId: 'st-aria-medical-center', deliveryManager: 'Julia Evans',
             quarters: [
-              { billableFte: 10, totalFte: 13, revenue: 400, cost: 270, marginPlan: 33.0, csat: 4.2, milestonesDue: 12, milestonesMet: 12, openEscalations: 1, attritionPct: 10.8 },
-              { billableFte: 10, totalFte: 13, revenue: 420, cost: 280, marginPlan: 33.0, csat: 4.1, milestonesDue: 13, milestonesMet: 13, openEscalations: 1, attritionPct: 11.3 },
-              { billableFte: 11, totalFte: 14, revenue: 460, cost: 300, marginPlan: 33.0, csat: 4.0, milestonesDue: 12, milestonesMet: 12, openEscalations: 1, attritionPct: 11.1 },
+              { billableFte: 10, totalFte: 13, revenue: 400, revenueTarget: 400, cost: 270, marginPlan: 33.0, csat: 4.2, milestonesDue: 12, milestonesMet: 12, openEscalations: 1, attritionPct: 10.8 },
+              { billableFte: 10, totalFte: 13, revenue: 420, revenueTarget: 440, cost: 280, marginPlan: 33.0, csat: 4.1, milestonesDue: 13, milestonesMet: 13, openEscalations: 1, attritionPct: 11.3 },
+              { billableFte: 11, totalFte: 14, revenue: 460, revenueTarget: 440, cost: 300, marginPlan: 33.0, csat: 4.0, milestonesDue: 12, milestonesMet: 12, openEscalations: 1, attritionPct: 11.1 },
             ],
             nextMilestones: [
               { name: 'Data migration wave', due: '2026-10-09', status: 'On track' },
@@ -891,9 +893,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'patient-scheduling', name: 'Patient Scheduling', accountId: 'northwind-clinics', deliveryManager: 'Tarun Bhatia',
             quarters: [
-              { billableFte: 17, totalFte: 22, revenue: 700, cost: 460, marginPlan: 33.0, csat: 4.3, milestonesDue: 11, milestonesMet: 11, openEscalations: 0, attritionPct: 10.2 },
-              { billableFte: 18, totalFte: 24, revenue: 740, cost: 490, marginPlan: 33.0, csat: 4.4, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 10.7 },
-              { billableFte: 19, totalFte: 25, revenue: 800, cost: 530, marginPlan: 33.0, csat: 4.2, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 10.5 },
+              { billableFte: 17, totalFte: 22, revenue: 700, revenueTarget: 720, cost: 460, marginPlan: 33.0, csat: 4.3, milestonesDue: 11, milestonesMet: 11, openEscalations: 0, attritionPct: 10.2 },
+              { billableFte: 18, totalFte: 24, revenue: 740, revenueTarget: 780, cost: 490, marginPlan: 33.0, csat: 4.4, milestonesDue: 12, milestonesMet: 12, openEscalations: 0, attritionPct: 10.7 },
+              { billableFte: 19, totalFte: 25, revenue: 800, revenueTarget: 780, cost: 530, marginPlan: 33.0, csat: 4.2, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 10.5 },
             ],
             nextMilestones: [
               { name: 'Sprint demo to client', due: '2026-10-14', status: 'On track' },
@@ -904,9 +906,9 @@ export const BUSINESS_UNITS: readonly Bu[] = [
           {
             id: 'care-analytics', name: 'Care Analytics', accountId: 'lakeside-health-system', deliveryManager: 'Carlos Rivera',
             quarters: [
-              { billableFte: 12, totalFte: 15, revenue: 500, cost: 330, marginPlan: 33.0, csat: 4.5, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 13.7 },
-              { billableFte: 13, totalFte: 17, revenue: 530, cost: 350, marginPlan: 33.0, csat: 4.6, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 14.2 },
-              { billableFte: 14, totalFte: 18, revenue: 570, cost: 380, marginPlan: 33.0, csat: 4.4, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 14.0 },
+              { billableFte: 12, totalFte: 15, revenue: 500, revenueTarget: 520, cost: 330, marginPlan: 33.0, csat: 4.5, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 13.7 },
+              { billableFte: 13, totalFte: 17, revenue: 530, revenueTarget: 560, cost: 350, marginPlan: 33.0, csat: 4.6, milestonesDue: 11, milestonesMet: 10, openEscalations: 0, attritionPct: 14.2 },
+              { billableFte: 14, totalFte: 18, revenue: 570, revenueTarget: 560, cost: 380, marginPlan: 33.0, csat: 4.4, milestonesDue: 10, milestonesMet: 10, openEscalations: 0, attritionPct: 14.0 },
             ],
             nextMilestones: [
               { name: 'Integration testing done', due: '2026-10-21', status: 'On track' },

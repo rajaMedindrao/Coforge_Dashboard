@@ -29,6 +29,10 @@ export interface View {
   unit: Unit;
   /** Rows of the comparison table (empty at person level) */
   children: Unit[];
+  /** Person level only: the project rows (projects in the account on Sales, the one project on Delivery) */
+  projectRows: Unit[];
+  /** Person level only: the other people in the same sub-business unit, used for comparisons */
+  peers: Unit[];
   bu?: Bu;
   subBu?: SubBu;
   account?: Account;
@@ -98,25 +102,41 @@ export function companyUnit(page: Page): Unit {
   };
 }
 
+/** A single project as a table row; projects are the last level, so it has no parts. */
+function projectUnit(page: Page, bu: Bu, subBu: SubBu, account: Account, project: Project): Unit {
+  return {
+    key: project.id,
+    name: project.name,
+    owner: page === 'sales' ? project.deliveryManager : `${account.name} · ${account.clientPartner}`,
+    selection: {buId: bu.id, subBuId: subBu.id, personId: project.id},
+    accounts: [account],
+    projects: [project],
+    parts: [],
+  };
+}
+
 /** Resolves a selection to a view, dropping any part of the selection that does not exist. */
 export function resolveView(page: Page, selection: Selection): View {
   const company = companyUnit(page);
   const bu = BUSINESS_UNITS.find(b => b.id === selection.buId);
-  if (!bu) return {page, level: 'company', unit: company, children: company.parts};
+  if (!bu) return {page, level: 'company', unit: company, children: company.parts, projectRows: [], peers: []};
   const buView = company.parts.find(u => u.key === bu.id)!;
   const subBu = bu.subBus.find(s => s.id === selection.subBuId);
-  if (!subBu) return {page, level: 'bu', unit: buView, children: buView.parts, bu};
+  if (!subBu) return {page, level: 'bu', unit: buView, children: buView.parts, projectRows: [], peers: [], bu};
   const subView = buView.parts.find(u => u.key === subBu.id)!;
   const person = subView.parts.find(u => u.key === selection.personId);
-  if (!person) return {page, level: 'subBu', unit: subView, children: subView.parts, bu, subBu};
+  if (!person) return {page, level: 'subBu', unit: subView, children: subView.parts, projectRows: [], peers: [], bu, subBu};
+  const account = person.accounts[0];
   return {
     page,
     level: 'person',
     unit: person,
     children: [],
+    projectRows: person.projects.map(project => projectUnit(page, bu, subBu, account, project)),
+    peers: subView.parts,
     bu,
     subBu,
-    account: person.accounts[0],
+    account,
     project: page === 'delivery' ? person.projects[0] : undefined,
   };
 }

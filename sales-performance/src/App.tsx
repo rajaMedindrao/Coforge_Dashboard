@@ -1,7 +1,14 @@
 import {useCallback, useEffect, useMemo, useState} from 'react';
 import {CURRENT_QUARTER, QUARTERS} from './data/staticData';
 import {resolveView, selectionForPage, type Page, type Selection, type Unit, type View} from './model/hierarchy';
-import {CLIENT_PARTNER_METRICS, DELIVERY_MANAGER_METRICS, DELIVERY_METRICS, SALES_METRICS, type MetricDef} from './model/metrics';
+import {
+  ACCOUNT_PROJECT_METRICS,
+  CLIENT_PARTNER_METRICS,
+  DELIVERY_MANAGER_METRICS,
+  DELIVERY_METRICS,
+  SALES_METRICS,
+  type MetricDef,
+} from './model/metrics';
 import {deliveryFigures, quarterSeries, salesFigures, type DeliveryFigures, type SalesFigures} from './model/rollup';
 import {deliveryTalkingPoints, salesTalkingPoints} from './model/talkingPoints';
 import {Breadcrumb} from './components/Breadcrumb';
@@ -128,9 +135,30 @@ function Body<F extends SalesFigures | DeliveryFigures>({view, metrics, rowMetri
 
       {view.level === 'person' ? (
         view.page === 'sales' ? (
-          <DealsTable account={view.account!} />
+          <>
+            <ComparisonTable
+              title={`Projects in this account · ${view.account!.name}`}
+              nameHeader="Project"
+              rows={view.projectRows}
+              metrics={ACCOUNT_PROJECT_METRICS}
+              figuresFor={deliverySeries}
+              talkingPointsFor={deliveryTalkingPoints}
+            />
+            <DealsTable account={view.account!} />
+          </>
         ) : (
-          <MilestonesTable project={view.project!} accountName={view.account?.name ?? ''} />
+          <>
+            <ComparisonTable
+              title={`Project · ${view.project!.name}`}
+              nameHeader="Project"
+              rows={view.projectRows}
+              metrics={DELIVERY_METRICS}
+              figuresFor={deliverySeries}
+              talkingPointsFor={deliveryTalkingPoints}
+              siblings={view.peers}
+            />
+            <MilestonesTable project={view.project!} accountName={view.account?.name ?? ''} />
+          </>
         )
       ) : (
         <ComparisonTable

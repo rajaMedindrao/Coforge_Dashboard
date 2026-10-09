@@ -3,8 +3,10 @@ import {BUSINESS_UNITS, CURRENT_QUARTER, type Account, type Project} from '../sr
 import {money, pct, signedMoney} from '../src/model/format';
 import {companyUnit, resolveView, type Unit} from '../src/model/hierarchy';
 import {
+  ACCOUNT_PROJECT_METRICS,
   CLIENT_PARTNER_METRICS,
   DELIVERY_MANAGER_METRICS,
+  DELIVERY_METRICS,
   ragOfCoverage,
   ragOfMargin,
 } from '../src/model/metrics';
@@ -148,6 +150,58 @@ describe('static data is simple and round', () => {
     }
     for (const unit of units(companyUnit('delivery'))) {
       for (const q of QUARTERS) for (const m of DELIVERY_MANAGER_METRICS) expect(Number.isFinite(m.value(deliveryFigures(unit.projects, q)))).toBe(true);
+    }
+  });
+});
+
+describe('projects are the same on both tabs', () => {
+  const locate = (projectId: string) => {
+    const bu = BUSINESS_UNITS.find(b => b.subBus.some(s => s.projects.some(p => p.id === projectId)))!;
+    const subBu = bu.subBus.find(s => s.projects.some(p => p.id === projectId))!;
+    const project = subBu.projects.find(p => p.id === projectId)!;
+    return {bu, subBu, project};
+  };
+  const [revenueColumn, marginColumn] = ACCOUNT_PROJECT_METRICS;
+  const marginOnDelivery = DELIVERY_METRICS.find(m => m.key === 'projectMargin')!;
+
+  for (const quarter of QUARTERS) {
+    it(`project revenue and revenue targets add up to the account in quarter ${quarter}`, () => {
+      for (const account of allAccounts) {
+        const projects = allProjects.filter(p => p.accountId === account.id);
+        expect(sumOf(projects, p => p.quarters[quarter].revenue), account.name).toBe(account.quarters[quarter].revenue);
+        expect(sumOf(projects, p => p.quarters[quarter].revenueTarget), account.name).toBe(account.quarters[quarter].revenueTarget);
+      }
+    });
+  }
+
+  it('shows each project with the same name, Delivery Manager, revenue and gross margin on Sales and Delivery', () => {
+    for (const {id} of allProjects) {
+      const {bu, subBu, project} = locate(id);
+      const salesView = resolveView('sales', {buId: bu.id, subBuId: subBu.id, personId: project.accountId});
+      const deliveryView = resolveView('delivery', {buId: bu.id, subBuId: subBu.id, personId: project.id});
+      const onSales = salesView.projectRows.find(row => row.key === project.id)!;
+      const [onDelivery] = deliveryView.projectRows;
+
+      expect(salesView.level).toBe('person');
+      expect(deliveryView.projectRows).toHaveLength(1);
+      expect(onSales.name).toBe(onDelivery.name);
+      expect(onSales.owner).toBe(deliveryView.unit.name);
+      for (const quarter of QUARTERS) {
+        const salesFigures = deliveryFigures(onSales.projects, quarter);
+        const deliveryFiguresForRow = deliveryFigures(onDelivery.projects, quarter);
+        expect(revenueColumn.value(salesFigures)).toBe(deliveryFiguresForRow.revenue);
+        expect(marginColumn.value(salesFigures)).toBe(marginOnDelivery.value(deliveryFiguresForRow));
+        expect(marginColumn.target(salesFigures)).toBe(marginOnDelivery.target(deliveryFiguresForRow));
+      }
+    }
+  });
+
+  it('lists 1 or 2 projects per Client Partner, matching the account', () => {
+    for (const account of allAccounts) {
+      const {bu, subBu} = locate(allProjects.find(p => p.accountId === account.id)!.id);
+      const rows = resolveView('sales', {buId: bu.id, subBuId: subBu.id, personId: account.id}).projectRows;
+      expect(rows.map(r => r.key)).toEqual(allProjects.filter(p => p.accountId === account.id).map(p => p.id));
+      expect([1, 2]).toContain(rows.length);
     }
   });
 });

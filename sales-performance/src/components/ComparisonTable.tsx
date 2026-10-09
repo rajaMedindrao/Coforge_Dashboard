@@ -1,3 +1,4 @@
+import type {KeyboardEvent} from 'react';
 import type {Unit} from '../model/hierarchy';
 import type {MetricDef} from '../model/metrics';
 import type {TalkingPoint} from '../model/talkingPoints';
@@ -9,15 +10,18 @@ interface Props<F> {
   metrics: readonly MetricDef<F>[];
   figuresFor: (unit: Unit) => readonly F[];
   talkingPointsFor: (unit: Unit, siblings: readonly Unit[]) => TalkingPoint[];
-  onSelect: (unit: Unit) => void;
+  /** Units each row is compared with in "What to discuss"; defaults to the rows themselves */
+  siblings?: readonly Unit[];
+  /** Omit for the last level: rows are then not clickable */
+  onSelect?: (unit: Unit) => void;
 }
 
-export function ComparisonTable<F>({title, nameHeader, rows, metrics, figuresFor, talkingPointsFor, onSelect}: Props<F>) {
+export function ComparisonTable<F>({title, nameHeader, rows, metrics, figuresFor, talkingPointsFor, siblings = rows, onSelect}: Props<F>) {
   return (
     <section className="table-panel">
       <div className="table-heading">
         <h2>{title}</h2>
-        <span className="hint">Click a row to drill down</span>
+        {onSelect && <span className="hint">Click a row to drill down</span>}
       </div>
       <table className={metrics.length > 5 ? 'comparison wide' : 'comparison'}>
         <thead>
@@ -33,14 +37,16 @@ export function ComparisonTable<F>({title, nameHeader, rows, metrics, figuresFor
           {rows.map(row => {
             const series = figuresFor(row);
             const now = series[series.length - 1];
+            const interaction = onSelect
+              ? {
+                  tabIndex: 0,
+                  onClick: () => onSelect(row),
+                  onKeyDown: (event: KeyboardEvent) => event.key === 'Enter' && onSelect(row),
+                  'aria-label': `Open ${row.name}`,
+                }
+              : {className: 'static'};
             return (
-              <tr
-                key={row.key}
-                tabIndex={0}
-                onClick={() => onSelect(row)}
-                onKeyDown={event => event.key === 'Enter' && onSelect(row)}
-                aria-label={`Open ${row.name}`}
-              >
+              <tr key={row.key} {...interaction}>
                 <td className="name-col">
                   <strong>{row.name}</strong>
                   <small>{row.owner}</small>
@@ -53,7 +59,7 @@ export function ComparisonTable<F>({title, nameHeader, rows, metrics, figuresFor
                 ))}
                 <td className="discuss-col">
                   <ul>
-                    {talkingPointsFor(row, rows).map(point => (
+                    {talkingPointsFor(row, siblings).map(point => (
                       <li key={point.text}>
                         <span className={`rag-dot small ${point.rag}`} />
                         {point.text}

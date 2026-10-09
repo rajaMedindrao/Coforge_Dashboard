@@ -67,6 +67,7 @@ export interface DeliveryTotals {
   billableFte: number;
   totalFte: number;
   revenue: number;
+  revenueTarget: number;
   cost: number;
   milestonesDue: number;
   milestonesMet: number;
@@ -86,6 +87,7 @@ export function sumDelivery(projects: readonly Project[], quarter: number): Deli
     billableFte: sum(rows, r => r.billableFte),
     totalFte: sum(rows, r => r.totalFte),
     revenue: sum(rows, r => r.revenue),
+    revenueTarget: sum(rows, r => r.revenueTarget),
     cost: sum(rows, r => r.cost),
     milestonesDue: sum(rows, r => r.milestonesDue),
     milestonesMet: sum(rows, r => r.milestonesMet),

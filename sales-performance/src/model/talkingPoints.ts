@@ -154,8 +154,9 @@ export function deliveryTalkingPoints(unit: Unit, siblings: readonly Unit[]): Ta
     issues.push({rag: 'red', text: `${project.name}${account ? ` at ${account}` : ''} is red: ${listPhrases(phrases)}${more}`});
   }
 
+  // A single project's "Red" or "Slipping" line below already lists every measure.
   for (const metric of DELIVERY_METRICS) {
-    if (redProjects.length === 0 && metric.rag(now) !== 'green') {
+    if (redProjects.length === 0 && unit.projects.length > 1 && metric.rag(now) !== 'green') {
       issues.push({rag: metric.rag(now), text: `${metric.label} ${metric.format(metric.value(now))} vs ${metric.targetText(now).toLowerCase()}`});
     }
   }
