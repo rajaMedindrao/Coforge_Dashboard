@@ -59,3 +59,5 @@ GitHub Pages must use **GitHub Actions** as its publishing source. Deployment fo
 - `vite.config.ts`: shared development server and multi-page production build.
 
 This is an interview demo using illustrative static data, not a connection to live Coforge systems. The displayed review period is Q2 FY27 (July–September 2026). Financial source values use USD thousands and are formatted for display. Potential opportunities are excluded from active pipeline rollups. Metric cards expose their formulas and thresholds through tooltips.
+
+The header uses the official dark-background SVG logo from [Coforge's press kit](https://news.coforge.com/newsroom/press-kit), stored in `sales-performance/src/assets/coforge-logo-dark.svg` and shared by both dashboards.

@@ -47,26 +47,14 @@ select {
 
 .brand {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 14px;
 }
 
 .logo {
-  font-size: 26px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  position: relative;
-}
-
-.logo::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 28px;
-  height: 3px;
-  background: var(--coral);
-  border-radius: 2px;
+  display: block;
+  width: 140px;
+  height: auto;
 }
 
 .product {

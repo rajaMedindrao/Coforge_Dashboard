@@ -1,4 +1,5 @@
 import {useCallback, useEffect, useMemo, useState} from 'react';
+import {CoforgeLogo} from './components/CoforgeLogo';
 import {CURRENT_QUARTER, QUARTERS} from './data/staticData';
 import {resolveView, selectionForPage, type Page, type Selection, type Unit, type View} from './model/hierarchy';
 import {
@@ -70,7 +71,7 @@ export function App() {
     <div className="app">
       <header className="topbar">
         <div className="brand">
-          <span className="logo">coforge</span>
+          <CoforgeLogo />
         </div>
         <nav className="tabs" aria-label="Page">
           {(['sales', 'delivery'] as const).map(page => (

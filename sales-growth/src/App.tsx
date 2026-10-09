@@ -1,4 +1,5 @@
 import {useCallback, useEffect, useMemo, useState} from 'react';
+import {CoforgeLogo} from '../../sales-performance/src/components/CoforgeLogo';
 import {CURRENT_QUARTER, QUARTERS} from '../../sales-performance/src/data/staticData';
 import {Legend} from '../../sales-performance/src/components/Legend';
 import {resolveGrowthView, type GrowthSelection} from './model/growthHierarchy';
@@ -34,7 +35,7 @@ export function App() {
   const quarter = QUARTERS[CURRENT_QUARTER];
   return <div className="app">
     <header className="topbar">
-      <div className="brand"><span className="logo">coforge</span></div>
+      <div className="brand"><CoforgeLogo /></div>
       <nav className="tabs" aria-label="Page"><button type="button" className="active" aria-current="page" onClick={() => navigate({})}>Account Growth</button></nav>
       <div className="period"><strong>{quarter.label}</strong> · {quarter.months} · USD</div>
     </header>
