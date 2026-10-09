@@ -41,3 +41,62 @@
 .growth-title-opportunity .owner { font-size: 12px; }
 
 .growth .table-heading > .hint { display: none; }
+
+/* Opportunity detail structure from the supplied opportunity-details.html. */
+.opportunity-details { display: flex; flex-direction: column; gap: 20px; margin-top: 24px; font-size: 13px; line-height: 1.45; }
+.opportunity-details > .kpi-card, .od-grid > .kpi-card { padding: 20px 24px; }
+.od-summary { display: flex; flex-wrap: wrap; gap: 24px; }
+.od-scope { flex: 1 1 300px; min-width: 0; }
+.od-scope p { margin: 0; color: var(--navy); font-size: 18px; font-weight: 500; }
+.od-facts { flex: 2 1 650px; display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 16px 0; margin: 0; }
+.od-facts > div { padding: 0 14px; border-left: 1px solid var(--line); min-width: 0; }
+.od-facts dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+.opportunity-details .od-label { margin: 0 0 6px; font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+.opportunity-details small { font-size: 11.5px; color: var(--muted); font-weight: 400; }
+.od-facts dd > small, .od-person-text small, .od-product > small { display: block; }
+.od-team, .od-team > div, .od-step-owner { display: flex; gap: 8px; }
+.od-team { flex-direction: column; font-weight: 400; }
+.od-team > div, .od-step-owner { align-items: center; }
+.od-avatar { flex: none; width: 34px; height: 34px; border-radius: 50%; background: var(--page); color: var(--navy); font-weight: 600; display: inline-flex; align-items: center; justify-content: center; }
+.od-team .od-avatar, .od-step-owner .od-avatar { width: 26px; height: 26px; font-size: 11px; }
+.od-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.od-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+.od-head .hint { text-align: right; }
+.od-person { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); }
+.od-person:nth-child(2) { border-top: 0; padding-top: 0; }
+.od-person-text { flex: 1; min-width: 0; }
+.od-chip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; background: var(--page); font-size: 12px; }
+.od-outline { background: white; border: 1px solid var(--navy); color: var(--navy); }
+.od-chip.od-green { background: var(--green-tint); color: var(--green); }
+.od-chip.od-amber { background: var(--amber-tint); color: var(--amber); }
+.od-chip.od-red { background: var(--red-tint); color: var(--red); }
+.od-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.od-chips small { text-transform: uppercase; font-size: 10px; }
+.od-card p { margin: 0 0 16px; }
+.od-risk { background: var(--red-tint); border-radius: 6px; padding: 12px 14px; }
+.od-risk .od-label { color: var(--red); }
+.od-risk p { margin: 0 0 6px; }
+.od-risk p:last-child { margin-bottom: 0; }
+.od-product + .od-product { margin-top: 20px; }
+.od-product-name { font-size: 23px; font-weight: 700; }
+.od-divider { height: 1px; background: var(--line); margin: 16px 0 14px; }
+.od-product p { margin-bottom: 0; }
+.od-timeline { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; list-style: none; margin: 0; padding: 0; }
+.od-timeline li { min-width: 0; }
+.od-timeline li > strong { display: block; margin-bottom: 8px; }
+.od-track { display: flex; align-items: center; margin-bottom: 12px; }
+.od-number { flex: none; width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--navy); color: var(--navy); display: inline-flex; align-items: center; justify-content: center; font-weight: 600; }
+.od-number.current { background: var(--navy); color: white; }
+.od-number.close { border-color: var(--green); color: var(--green); }
+.od-line { flex: 1; height: 2px; background: var(--line); margin-left: 8px; }
+.od-next { margin-left: 6px; font-size: 10px; text-transform: uppercase; background: var(--amber-tint); color: var(--amber); padding: 1px 6px; border-radius: 4px; }
+.od-step-owner { margin-bottom: 4px; min-height: 26px; }
+.od-timeline small b { color: var(--navy); font-weight: 600; }
+@media (max-width: 1100px) {
+  .od-grid { grid-template-columns: 1fr; }
+  .od-facts > div { padding-left: 0; border-left: 0; }
+}
+@media (max-width: 700px) {
+  .od-timeline { grid-template-columns: 1fr; }
+  .od-line { display: none; }
+}

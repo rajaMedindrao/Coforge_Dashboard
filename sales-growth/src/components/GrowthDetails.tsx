@@ -2,11 +2,11 @@ import {KpiCard} from '../../../sales-performance/src/components/KpiCard';
 import {ComparisonTable} from '../../../sales-performance/src/components/ComparisonTable';
 import type {Unit} from '../../../sales-performance/src/model/hierarchy';
 import type {MetricDef, Rag} from '../../../sales-performance/src/model/metrics';
-import {money, pct, shortDate} from '../../../sales-performance/src/model/format';
+import {money, pct} from '../../../sales-performance/src/model/format';
 import {OPPORTUNITY_TYPES, STAGES, type Opportunity} from '../data/growthData';
 import {growthBridge, isActive, isOpen, opportunityRow, type GrowthAccount, type OpportunityRow} from '../model/growth';
 import {ragOfWinPct, ragOfMarginPct} from '../model/growthMetrics';
-import {typeSpecificFields} from './OpportunityDrawer';
+import {OpportunityDetails} from './OpportunityDetails';
 
 export function StageDots({opp}: {opp: Opportunity}) {
   return <span className="stage-dots">{opp.stage ?? 'Potential'} <span aria-hidden="true">{STAGES.map((s, i) => <i key={s} className={opp.stage && i <= STAGES.indexOf(opp.stage) ? 'done' : ''} />)}</span></span>;
@@ -52,7 +52,6 @@ export function AccountPage({account, onOpen}: {account: GrowthAccount; onOpen: 
 }
 export function OpportunityPage({account, opp}: {account: GrowthAccount; opp: Opportunity}) {
   const row = opportunityRow(opp, account);
-  const detail = opp.detail!;
   const metrics = [
     detailMetric('tcv', 'TCV', r => r.opp.tcv), detailMetric('annual', 'Annual value', r => r.opp.annualValue),
     detailMetric('fy27', 'FY27 if won', r => r.revenueIfWon), oppMetrics[2], detailMetric('expected', 'Expected FY27', r => r.expectedRevenue),
@@ -60,20 +59,7 @@ export function OpportunityPage({account, opp}: {account: GrowthAccount; opp: Op
   ];
   return <div className="growth opportunity-page">
     <section className="kpi-row" style={{gridTemplateColumns: 'repeat(6, minmax(0, 1fr))'}}>{metrics.map(m => <KpiCard key={m.key} metric={m} series={[row]} />)}</section>
-    <div className="opportunity-columns">
-      <section className="kpi-card detail-section">
-        <h2>Scope</h2><p>{detail.scope}</p>
-        <h2>Type-specific details</h2><dl>{typeSpecificFields(row).map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
-        <h2>Competition</h2><p>{opp.competitors.map((c, i) => <span key={c}>{i > 0 && ' · '}{i === 0 ? <b>{c}</b> : c}</span>)} · {detail.whyWeWin}</p>
-        <h2>Client decision-makers</h2>{detail.decisionMakers.map(name => {const s = account.stakeholders.find(s => s.name === name)!; return <p key={name}><span className={`rag-dot small ${{Strong: 'green', Medium: 'amber', Weak: 'red'}[s.strength]}`} /> <b>{s.name}</b> · {s.role} · {s.strength === 'Medium' ? 'Neutral' : s.strength}</p>;})}
-        <p className="hint">Expected close {shortDate(opp.expectedClose)} · Deal team {opp.dealTeam.join(', ')}</p>
-      </section>
-      <section className="kpi-card detail-section">
-        <h2>Coforge product relevance <span className="hint">illustrative</span></h2>{detail.products.map(p => <p key={p.name}><b>{p.name}</b> · {p.why}</p>)}
-        <h2>Risks</h2><ul>{detail.risks.map(r => <li key={r}>{r}</li>)}</ul>
-        <h2>Next 3 steps</h2><ol>{detail.nextSteps.map(s => <li key={s.step}>{s.step}<small>{s.owner} · {shortDate(s.due)}</small></li>)}</ol>
-      </section>
-    </div>
+    <OpportunityDetails row={row} />
   </div>;
 }
 
